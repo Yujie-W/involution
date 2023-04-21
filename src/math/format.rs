@@ -18,15 +18,24 @@ fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
     let mut strs : Vec<String> = vec![];
     for i in 0..nums.len() {
         let x_len: usize = nums[i].to_string().len();
-        // Add (N - l) spaces for first element
-        let s_len: usize = if i == 0 {
-            max_len - x_len
+        //let mut s_len: usize;
+        //let mut x_str: String = String::new();
+
+        // Add (N-l) spaces for first element
+        let x_str: String = if i == 0 {
+            let s_len: usize = max_len - x_len;
+            format!("{}{}", " ".repeat(s_len), nums[i].to_string())
         }
-        // Add (N -l -1) spaces for second element (1 for operator such as +)
+        // Add (N-l-1) spaces for second element (1 for operator such as +)
+        else if i == 1 {
+            let s_len = max_len - x_len - 1;
+            format!("{}{}", " ".repeat(s_len), nums[i].to_string())
+        }
+        // Add (N-l-1) spaces for second element (1 for operator such as =)
         else {
-            max_len - x_len - 1
+            let s_len = max_len - x_len - 1;
+            format!("{}", " ".repeat(s_len))
         };
-        let x_str: String = format!("{}{}", " ".repeat(s_len), nums[i].to_string());
         strs.push(x_str);
     }
 
@@ -44,7 +53,7 @@ pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) {
     println!("{}", strs[0]);
     println!("{oper}{}", strs[1]);
     println!("{}", "-".repeat(strs[0].len()+1));
-    print!("{}", "= ".yellow());
+    print!("{}{}", "=".yellow(), strs[2]);
     io::stdout()
         .flush()
         .expect("failed to flush");

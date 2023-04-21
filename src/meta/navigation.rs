@@ -2,12 +2,13 @@ use std::io::{self, Write};
 
 use colored::Colorize;
 
-use super::super::math::quiz::plus_quiz;
+use super::super::math::quiz::{plus_quiz, subtract_quiz};
 
 // Function to show navigation menu
 pub fn show_navigation() {
     println!("{}", "Currently, Involution supports the following learning modules:".bold());
-    println!("{}", "    1. Math - Plus - Quiz".bold());
+    println!("{}", "    1. Math - Quiz - Plus".bold());
+    println!("{}", "    2. Math - Quiz - Subtract".bold());
     println!("{}", "    Q. Save and Quit".bold());
     print!("{}", "Please indicate your choice > ".yellow());
     io::stdout()
@@ -27,6 +28,7 @@ pub fn choose_module() -> bool {
     let choice = input_text.trim();
     let breaking = match choice {
         "1" => {plus_quiz(50, 0, 20); false},
+        "2" => {subtract_quiz(50, 0, 20); false},
         "Q" => {true},
         "q" => {true},
         _ => {println!("{}", "Option is not supported!".red()); false},
