@@ -1,8 +1,6 @@
-use std::io::{self, Write};
+use std::io;
 
-use colored::Colorize;
-
-use super::format::{display_question};
+use super::format::{display_question, display_result};
 use super::numbers::random_integer_plus;
 
 // Function for plus quiz in the main menu
@@ -13,10 +11,6 @@ pub fn quiz(n : u32, x_min : u32, x_max : u32) {
 
         display_question(i, &nums, "+".to_string());
 
-        io::stdout()
-            .flush()
-            .expect("failed to flush");
-
         let mut input_text: String = String::new();
         io::stdin()
             .read_line(&mut input_text)
@@ -25,14 +19,7 @@ pub fn quiz(n : u32, x_min : u32, x_max : u32) {
         let trimmed = input_text.trim();
         match trimmed.parse::<u32>() {
             Ok(user_answ ) => {
-                if user_answ == nums[2] {
-                    let mesg: String = format!("You were correct, the answer is {}", nums[2]);
-                    println!("{}", mesg.green().bold());
-                }
-                else {
-                    let mesg: String = format!("Oh no, you were wrong! The correct answer is {}", nums[2]);
-                    println!("{}", mesg.red().bold());
-                }
+                display_result(nums[2], user_answ);
             }
             Err(..) => println!("this was not an integer: {}", trimmed),
         };
