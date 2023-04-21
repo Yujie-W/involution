@@ -45,7 +45,7 @@ fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
 // Function to display the question in terminal
 pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) {
     // Display the question
-    let ques: String = format!("Question {quest_ind}: What is the result of {} {oper} {}?", nums[0], nums[1]);
+    let ques: String = format!("\nQuestion {quest_ind}: What is the result of {} {oper} {}?", nums[0], nums[1]);
     println!("{}", ques.blue());
 
     // Format the numbers and display the question vertically
@@ -71,5 +71,4 @@ pub fn display_result(answer : u32, input : u32) {
         let mesg: String = format!("Oh no, you were wrong! The correct answer is {}", answer);
         println!("{}", mesg.red().bold());
     }
-    println!("\n");
 }
