@@ -5,7 +5,7 @@ use rand::Rng;
 
 fn random_unit(x_min : u32, x_max : u32) -> Vec<u32> {
     let num1: u32 = rand::thread_rng().gen_range(x_min..x_max);
-    let num2: u32 = rand::thread_rng().gen_range(x_min..x_max);
+    let num2: u32 = rand::thread_rng().gen_range(0..(x_max-num1));
 
     vec![num1, num2]
 }
@@ -35,18 +35,18 @@ fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
     strs
 }
 
-pub fn quiz(n : u32) {
+pub fn quiz(n : u32, x_min : u32, x_max : u32) {
     println!("\nMath quiz with {n} questions!\n");
     for i in 0..n {
-        let nums: Vec<u32> = random_unit(0,100);
+        let nums: Vec<u32> = random_unit(x_min,x_max);
         let ques: String = format!("Question {i}: What is the sum of {} + {}?", nums[0], nums[1]);
-        println!("{}", ques.yellow());
+        println!("{}", ques.blue());
         let answ: u32 = nums.iter().sum();
         let strs: Vec<String> = rendered_numbers(&nums);
         println!("{}", strs[0]);
         println!("+{}", strs[1]);
         println!("{}", "-".repeat(strs[0].len()+1));
-        print!("= ");
+        print!("{}", "= ".yellow());
         io::stdout()
             .flush()
             .expect("failed to flush");
