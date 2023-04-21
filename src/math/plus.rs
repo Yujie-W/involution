@@ -2,32 +2,8 @@ use std::io::{self, Write};
 
 use colored::Colorize;
 
+use super::format::rendered_numbers;
 use super::numbers::random_integer_plus;
-
-fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
-    let sum : u32 = nums.iter().sum();
-    let mut max_len: usize = sum.to_string().len() + 2;
-    for num in nums.iter() {
-        if num.to_string().len() + 2 > max_len {
-            max_len = num.to_string().len() + 2;
-        }
-    }
-
-    let mut strs : Vec<String> = vec![];
-    for i in 0..nums.len() {
-        let x_len: usize = nums[i].to_string().len();
-        let s_len = if i == 0 {
-            max_len - x_len
-        }
-        else {
-            max_len - x_len - 1
-        };
-        let x_str: String = format!("{}{}"," ".repeat(s_len), nums[i].to_string());
-        strs.push(x_str);
-    }
-
-    strs
-}
 
 pub fn quiz(n : u32, x_min : u32, x_max : u32) {
     println!("\nMath quiz with {n} questions!\n");
