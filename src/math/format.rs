@@ -1,3 +1,5 @@
+use colored::Colorize;
+
 // Function to format the numbers to strings to display in terminal
 pub fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
     let mut max_len: usize = 4;
@@ -21,4 +23,17 @@ pub fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
     }
 
     strs
+}
+
+// Function to display the question in terminal
+pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) {
+    let ques: String = format!("Question {quest_ind}: What is the result of {} {oper} {}?", nums[0], nums[1]);
+    println!("{}", ques.blue());
+
+    let strs: Vec<String> = rendered_numbers(&nums);
+
+    println!("{}", strs[0]);
+    println!("{oper}{}", strs[1]);
+    println!("{}", "-".repeat(strs[0].len()+1));
+    print!("{}", "= ".yellow());
 }
