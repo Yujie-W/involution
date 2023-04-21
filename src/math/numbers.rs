@@ -1,6 +1,17 @@
 use rand::Rng;
 
-// Function to generate random numbers for plus math
+// Function to generate random numbers for multiply
+pub fn random_integer_multiply(sum_min : u32, sum_max : u32) -> Vec<u32> {
+    // create a number within [sum_min,sum_max]
+    let num1: u32 = rand::thread_rng().gen_range(sum_min..(sum_max+1));
+
+    // create a number within [0,x_max-num1]
+    let num2: u32 = rand::thread_rng().gen_range(sum_min..(sum_max+1));
+
+    vec![num1, num2, num1 * num2]
+}
+
+// Function to generate random numbers for plus
 pub fn random_integer_plus(sum_min : u32, sum_max : u32) -> Vec<u32> {
     // create a number within [sum_min,sum_max]
     let num1: u32 = rand::thread_rng().gen_range(sum_min..(sum_max+1));
@@ -11,7 +22,7 @@ pub fn random_integer_plus(sum_min : u32, sum_max : u32) -> Vec<u32> {
     vec![num1, num2, num1 + num2]
 }
 
-// Function to generate random numbers for plus math
+// Function to generate random numbers for subtract
 pub fn random_integer_subtract(sum_min : u32, sum_max : u32) -> Vec<u32> {
     // create a number within [sum_min,sum_max]
     let num1: u32 = rand::thread_rng().gen_range(sum_min..(sum_max+1));
