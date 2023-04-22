@@ -1,12 +1,14 @@
 use std::io::{self, Write};
 
+use colored::Colorize;
+
 // Function to get an integer input from terminal
 pub fn get_input_number(mesg : String) -> u32 {
     let mut input_number : u32 = 0;
     let mut breaking : bool = false;
 
     while !breaking {
-        print!("{mesg}");
+        print!("{}", mesg.yellow());
         io::stdout()
             .flush()
             .expect("failed to flush");

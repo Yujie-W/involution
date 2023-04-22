@@ -53,7 +53,7 @@ pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) -> Str
     println!("{}", "-".repeat(strs[0].len()+1));
 
     // Define a mesg to display when querying user input
-    let mesg: String = format!("{}{}", "=".yellow(), strs[2]);
+    let mesg: String = format!("={}", strs[2]);
 
     return mesg
 }

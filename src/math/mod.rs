@@ -1,6 +1,6 @@
 mod format;
-mod input;
 mod numbers;
 
+pub mod input;
 pub mod quiz;
 pub mod setting;
