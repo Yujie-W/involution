@@ -1,11 +1,16 @@
-use std::io;
+use std::io::{self, Write};
 
 // Function to get an integer input from terminal
-pub fn get_input_number() -> u32 {
+pub fn get_input_number(mesg : String) -> u32 {
     let mut input_number : u32 = 0;
     let mut breaking : bool = false;
 
     while !breaking {
+        print!("{mesg}");
+        io::stdout()
+            .flush()
+            .expect("failed to flush");
+
         let mut input_text: String = String::new();
         io::stdin()
             .read_line(&mut input_text)
@@ -17,9 +22,7 @@ pub fn get_input_number() -> u32 {
                 input_number = converted;
                 breaking = true;
             }
-            Err(..) => {
-                println!("The input {input_text} was not an integer, please try again!");
-            }
+            Err(..) => {}
         }
     };
 

@@ -50,23 +50,9 @@ pub fn set_difficulty(quiz_type : u8) -> Vec<u32> {
     }
 
     // Ask for inputs
-    print!("\nPlease input the number of questions in a quiz > ");
-    io::stdout()
-        .flush()
-        .expect("failed to flush");
-    let n: u32 = get_input_number();
-
-    print!("Please input the minimum number of the quiz > ");
-    io::stdout()
-        .flush()
-        .expect("failed to flush");
-    let x_min: u32 = get_input_number();
-
-    print!("Please input the maximum number of the quiz > ");
-    io::stdout()
-        .flush()
-        .expect("failed to flush");
-    let x_max: u32 = get_input_number();
+    let n: u32 = get_input_number("\nPlease input the number of questions in a quiz > ".to_string());
+    let x_min: u32 = get_input_number("Please input the minimum number of the quiz > ".to_string());
+    let x_max: u32 = get_input_number("Please input the maximum number of the quiz > ".to_string());
 
     return vec![n, x_min, x_max]
 }

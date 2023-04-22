@@ -1,5 +1,3 @@
-use std::io::{self, Write};
-
 use colored::Colorize;
 
 // Function to format the numbers to strings to display in terminal
@@ -43,7 +41,7 @@ fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
 }
 
 // Function to display the question in terminal
-pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) {
+pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) -> String {
     // Display the question
     let ques: String = format!("\nQuestion {}: What is the result of {} {oper} {}?", quest_ind+1, nums[0], nums[1]);
     println!("{}", ques.blue());
@@ -53,10 +51,11 @@ pub fn display_question(quest_ind : u32, nums : &Vec<u32>, oper : String) {
     println!("{}", strs[0]);
     println!("{oper}{}", strs[1]);
     println!("{}", "-".repeat(strs[0].len()+1));
-    print!("{}{}", "=".yellow(), strs[2]);
-    io::stdout()
-        .flush()
-        .expect("failed to flush");
+
+    // Define a mesg to display when querying user input
+    let mesg: String = format!("{}{}", "=".yellow(), strs[2]);
+
+    return mesg
 }
 
 // Function to display result comparison
