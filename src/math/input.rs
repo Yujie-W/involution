@@ -11,7 +11,7 @@ pub fn get_input_number() -> u32 {
             .read_line(&mut input_text)
             .expect("failed to read from stdin");
 
-        let trimmed = input_text.trim();
+        let trimmed: &str = input_text.trim();
         match trimmed.parse::<u32>() {
             Ok(converted ) => {
                 input_number = converted;

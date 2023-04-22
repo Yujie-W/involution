@@ -2,7 +2,8 @@ use std::io::{self, Write};
 
 use colored::Colorize;
 
-use super::super::math::quiz::{divide_quiz, multiply_quiz, plus_quiz, subtract_quiz};
+use crate::math::quiz::{divide_quiz, multiply_quiz, plus_quiz, subtract_quiz};
+use crate::math::setting::set_difficulty;
 
 // Function to show navigation menu
 pub fn show_navigation() {
@@ -11,7 +12,8 @@ pub fn show_navigation() {
     println!("{}", "    2. Math - Quiz - Subtract".bold());
     println!("{}", "    3. Math - Quiz - Multiply".bold());
     println!("{}", "    4. Math - Quiz - Divide".bold());
-    println!("{}", "    Q. Save and Quit".bold());
+    println!("{}", "    S. Set Difficulty".bold());
+    println!("{}", "    Q. Quit".bold());
     print!("{}", "Please indicate your choice > ".yellow());
     io::stdout()
         .flush()
@@ -29,10 +31,26 @@ pub fn choose_module() -> bool {
     // Match user inputs to existing functions
     let choice = input_text.trim();
     let breaking = match choice {
-        "1" => {plus_quiz(5, 0, 20); false},
-        "2" => {subtract_quiz(5, 0, 20); false},
-        "3" => {multiply_quiz(5, 0, 10); false},
-        "4" => {divide_quiz(5, 0, 10); false},
+        "1" => {
+            let setting: Vec<u32> = set_difficulty(1);
+            plus_quiz(setting[0], setting[1], setting[2]);
+            false
+        },
+        "2" => {
+            let setting: Vec<u32> = set_difficulty(2);
+            subtract_quiz(setting[0], setting[1], setting[2]);
+            false
+        },
+        "3" => {
+            let setting: Vec<u32> = set_difficulty(3);
+            multiply_quiz(setting[0], setting[1], setting[2]);
+            false
+        },
+        "4" => {
+            let setting: Vec<u32> = set_difficulty(4);
+            divide_quiz(setting[0], setting[1], setting[2]);
+            false
+        },
         "Q" => {true},
         "q" => {true},
         _ => {println!("{}", "Option is not supported!".red()); false},
