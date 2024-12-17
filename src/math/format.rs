@@ -16,8 +16,6 @@ fn rendered_numbers(nums : &Vec<u32>) -> Vec<String> {
     let mut strs : Vec<String> = vec![];
     for i in 0..nums.len() {
         let x_len: usize = nums[i].to_string().len();
-        //let mut s_len: usize;
-        //let mut x_str: String = String::new();
 
         // Add (N-l) spaces for first element
         let x_str: String = if i == 0 {
